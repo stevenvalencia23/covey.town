@@ -145,7 +145,9 @@ export default function TownSelection({ doLogin }: TownSelectionProps): JSX.Elem
   };
 
   const handleAppearance = async(event: React.MouseEvent<HTMLElement>, newAppearance: integer) => {
-    setAppearance(newAppearance);
+    if (newAppearance !== null) {
+      setAppearance(newAppearance);
+    }
   }
 
   const randomAppearance = async() => {
