@@ -75,7 +75,7 @@ const CharacterSettings: React.FunctionComponent = () => {
     <Modal isOpen={isOpen} onClose={closeSettings}>
       <ModalOverlay/>
       <ModalContent>
-        <ModalHeader>Edit Avatar of {username} ({myPlayerID})</ModalHeader>
+        <ModalHeader>Edit Avatar of {username} ({userName})</ModalHeader>
         <ModalCloseButton/>
         <form onSubmit={(ev)=>{ev.preventDefault(); processUpdates('edit')}}>
           <ModalBody pb={6}>
@@ -93,16 +93,6 @@ const CharacterSettings: React.FunctionComponent = () => {
               <Input data-testid="updatePassword" id="updatePassword" placeholder="Password" name="password" type="password" value={roomUpdatePassword} onChange={(e)=>setRoomUpdatePassword(e.target.value)} />
             </FormControl>
           </ModalBody>
-
-          <ModalFooter>
-            <Button data-testid='deletebutton' colorScheme="red" mr={3} value="delete" name='action1' onClick={()=>processUpdates('delete')}>
-              Delete
-            </Button>
-            <Button data-testid='updatebutton' colorScheme="blue" mr={3} value="update" name='action2' onClick={()=>processUpdates('edit')}>
-              Update
-            </Button>
-            <Button onClick={closeSettings}>Cancel</Button>
-          </ModalFooter>
         </form>
       </ModalContent>
     </Modal>
