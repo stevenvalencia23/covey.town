@@ -5,7 +5,6 @@ import assert from "assert";
 import {
   Box,
   Button,
-  ButtonGroup,
   Checkbox,
   Flex,
   FormControl,
@@ -30,6 +29,8 @@ import app1 from './1.png';
 import app2 from './2.png';
 import app3 from './3.png';
 import app4 from './4.png';
+import {Character, characterTypes} from '../../classes/Player';
+
 
 interface TownSelectionProps {
   doLogin: (initData: TownJoinResponse) => Promise<boolean>
@@ -41,7 +42,7 @@ export default function TownSelection({ doLogin }: TownSelectionProps): JSX.Elem
   const [newTownIsPublic, setNewTownIsPublic] = useState<boolean>(true);
   const [townIDToJoin, setTownIDToJoin] = useState<string>('');
   const [currentPublicTowns, setCurrentPublicTowns] = useState<CoveyTownInfo[]>();
-  const [appearance, setAppearance] = useState<integer>(0);
+  const [appearance, setAppearance] = useState<Character>('misa-blond-hair');
   const { connect } = useVideoContext();
   const { apiClient } = useCoveyAppState();
   const toast = useToast();
@@ -81,7 +82,7 @@ export default function TownSelection({ doLogin }: TownSelectionProps): JSX.Elem
         });
         return;
       }
-      const initData = await Video.setup(userName, coveyRoomID, 'misa-blond-hair');
+      const initData = await Video.setup(userName, coveyRoomID, appearance);
 
       const loggedIn = await doLogin(initData);
       if (loggedIn) {
@@ -95,7 +96,7 @@ export default function TownSelection({ doLogin }: TownSelectionProps): JSX.Elem
         status: 'error'
       })
     }
-  }, [doLogin, userName, connect, toast]);
+  }, [doLogin, userName, connect, toast, appearance]);
 
   const handleCreate = async () => {
     if (!userName || userName.length === 0) {
@@ -144,17 +145,40 @@ export default function TownSelection({ doLogin }: TownSelectionProps): JSX.Elem
     }
   };
 
-  const handleAppearance = async(event: React.MouseEvent<HTMLElement>, newAppearance: integer) => {
+  const handleAppearance = async(event: React.MouseEvent<HTMLElement>, newAppearance: Character) => {
     if (newAppearance !== null) {
       setAppearance(newAppearance);
     }
   }
 
   const randomAppearance = async() => {
-    setAppearance(Math.floor(Math.random() * (4)));
+    setAppearance(characterTypes[Math.floor(Math.random() * (4))]);
  }
 
-  const appearances: string[] = [app1, app2, app3, app4]
+  function appearanceRandomizerHelper(imageString: Character): string {
+    switch(imageString) {
+      case 'misa-blond-hair': {
+        return app1;
+      }
+      case 'misa-blue-hair': {
+        return app2;
+      }
+      case 'misa-green-hair': {
+        return app3;
+      }
+      case 'misa-red-hair': {
+        return app4;
+      }
+      default: {
+        toast({
+          title: 'Unregistered appearance attempted',
+          description: 'Tried to assign an appearance image that wasnt findable',
+          status: 'error'
+          })
+        return "";
+      }
+    }
+  }
 
   return (
     <>
@@ -186,16 +210,16 @@ export default function TownSelection({ doLogin }: TownSelectionProps): JSX.Elem
                   onChange={handleAppearance}
                   size='large'
                 >
-                  <ToggleButton value={0}>
+                  <ToggleButton value='misa-blond-hair'>
                     Look 1
                   </ToggleButton>
-                  <ToggleButton value={1}>
+                  <ToggleButton value='misa-blue-hair'>
                     Look 2
                   </ToggleButton>
-                  <ToggleButton value={2}>
+                  <ToggleButton value='misa-green-hair'>
                     Look 3
                   </ToggleButton>
-                  <ToggleButton value={3}>
+                  <ToggleButton value='misa-red-hair'>
                     Look 4
                   </ToggleButton>
                 </ToggleButtonGroup>
@@ -216,7 +240,7 @@ export default function TownSelection({ doLogin }: TownSelectionProps): JSX.Elem
                 alignItems: "center"
               }}
               >
-                <img src={appearances[appearance]} alt="Appearance"/>
+                <img src={appearanceRandomizerHelper(appearance)} alt="Appearance"/>
               </div>
           </Box>
           <Box borderWidth="1px" borderRadius="lg">
