@@ -25,10 +25,6 @@ import useVideoContext from '../VideoCall/VideoFrontend/hooks/useVideoContext/us
 import Video from '../../classes/Video/Video';
 import { CoveyTownInfo, TownJoinResponse, } from '../../classes/TownsServiceClient';
 import useCoveyAppState from '../../hooks/useCoveyAppState';
-import app1 from './1.png';
-import app2 from './2.png';
-import app3 from './3.png';
-import app4 from './4.png';
 import {Character, characterTypes} from '../../classes/Player';
 
 
@@ -155,31 +151,6 @@ export default function TownSelection({ doLogin }: TownSelectionProps): JSX.Elem
     setAppearance(characterTypes[Math.floor(Math.random() * (4))]);
  }
 
-  function appearanceRandomizerHelper(imageString: Character): string {
-    switch(imageString) {
-      case 'misa-blond-hair': {
-        return app1;
-      }
-      case 'misa-blue-hair': {
-        return app2;
-      }
-      case 'misa-green-hair': {
-        return app3;
-      }
-      case 'misa-red-hair': {
-        return app4;
-      }
-      default: {
-        toast({
-          title: 'Unregistered appearance attempted',
-          description: 'Tried to assign an appearance image that wasnt findable',
-          status: 'error'
-          })
-        return "";
-      }
-    }
-  }
-
   return (
     <>
       <form>
@@ -240,7 +211,7 @@ export default function TownSelection({ doLogin }: TownSelectionProps): JSX.Elem
                 alignItems: "center"
               }}
               >
-                <img src={appearanceRandomizerHelper(appearance)} alt="Appearance"/>
+                <img src={`assets/characters/selections/${appearance}.png`} alt="Appearance"/>
               </div>
           </Box>
           <Box borderWidth="1px" borderRadius="lg">
