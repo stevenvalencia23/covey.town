@@ -222,7 +222,7 @@ describe('TownsServiceAPIREST', () => {
       const res = await apiClient.joinTown({
         userName: nanoid(),
         coveyTownID: pubTown1.coveyTownID,
-        character: 'misa-blond-hair',
+        character: 'misa-red-hair',
       });
       expect(res.coveySessionToken)
         .toBeDefined();
@@ -232,7 +232,7 @@ describe('TownsServiceAPIREST', () => {
       const res2 = await apiClient.joinTown({
         userName: nanoid(),
         coveyTownID: privTown1.coveyTownID,
-        character: 'misa-blond-hair',
+        character: 'misa-blue-hair',
       });
       expect(res2.coveySessionToken)
         .toBeDefined();
