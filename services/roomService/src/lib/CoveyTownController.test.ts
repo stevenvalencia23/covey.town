@@ -60,7 +60,7 @@ describe('CoveyTownController', () => {
       mockListeners.forEach(mockReset);
     });
     it('should notify added listeners of player movement when updatePlayerLocation is called', async () => {
-      const player = new Player('test player', 'misa-blond-hair');
+      const player = new Player('test player', 'misa-red-hair');
       await testingTown.addPlayer(player);
       const newLocation = generateTestLocation();
       mockListeners.forEach(listener => testingTown.addTownListener(listener));
@@ -68,7 +68,7 @@ describe('CoveyTownController', () => {
       mockListeners.forEach(listener => expect(listener.onPlayerMoved).toBeCalledWith(player));
     });
     it('should notify added listeners of player disconnections when destroySession is called', async () => {
-      const player = new Player('test player', 'misa-blond-hair');
+      const player = new Player('test player', 'misa-blue-hair');
       const session = await testingTown.addPlayer(player);
 
       mockListeners.forEach(listener => testingTown.addTownListener(listener));
@@ -78,13 +78,13 @@ describe('CoveyTownController', () => {
     it('should notify added listeners of new players when addPlayer is called', async () => {
       mockListeners.forEach(listener => testingTown.addTownListener(listener));
 
-      const player = new Player('test player', 'misa-blond-hair');
+      const player = new Player('test player', 'misa-green-hair');
       await testingTown.addPlayer(player);
       mockListeners.forEach(listener => expect(listener.onPlayerJoined).toBeCalledWith(player));
 
     });
     it('should notify added listeners that the town is destroyed when disconnectAllPlayers is called', async () => {
-      const player = new Player('test player', 'misa-blond-hair');
+      const player = new Player('test player', 'misa-blue-hair');
       await testingTown.addPlayer(player);
 
       mockListeners.forEach(listener => testingTown.addTownListener(listener));
@@ -104,7 +104,7 @@ describe('CoveyTownController', () => {
       expect(listenerRemoved.onPlayerMoved).not.toBeCalled();
     });
     it('should not notify removed listeners of player disconnections when destroySession is called', async () => {
-      const player = new Player('test player', 'misa-blond-hair');
+      const player = new Player('test player', 'misa-red-hair');
       const session = await testingTown.addPlayer(player);
 
       mockListeners.forEach(listener => testingTown.addTownListener(listener));
@@ -115,7 +115,7 @@ describe('CoveyTownController', () => {
 
     });
     it('should not notify removed listeners of new players when addPlayer is called', async () => {
-      const player = new Player('test player', 'misa-blond-hair');
+      const player = new Player('test player', 'misa-green-hair');
 
       mockListeners.forEach(listener => testingTown.addTownListener(listener));
       const listenerRemoved = mockListeners[1];
@@ -126,7 +126,7 @@ describe('CoveyTownController', () => {
     });
 
     it('should not notify removed listeners that the town is destroyed when disconnectAllPlayers is called', async () => {
-      const player = new Player('test player', 'misa-blond-hair');
+      const player = new Player('test player', 'misa-green-hair');
       await testingTown.addPlayer(player);
 
       mockListeners.forEach(listener => testingTown.addTownListener(listener));
@@ -195,7 +195,7 @@ describe('CoveyTownController', () => {
           const disconnectHandler = mockSocket.on.mock.calls.find(call => call[0] === 'disconnect');
           if (disconnectHandler && disconnectHandler[1]) {
             disconnectHandler[1]();
-            const newPlayer = new Player('should not be notified', 'misa-blond-hair');
+            const newPlayer = new Player('should not be notified', 'misa-blue-hair');
             await testingTown.addPlayer(newPlayer);
             expect(mockSocket.emit).not.toHaveBeenCalledWith('newPlayer', newPlayer);
           } else {
