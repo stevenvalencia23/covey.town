@@ -16,6 +16,8 @@ A backend service (in the `services/roomService` directory) implements the appli
 
 This deployment of Covey.Town features character custoimization. It requires no additional steps for deployment. The appropriate repo can be found [here](https://github.com/stevenvalencia23/covey.town).
 
+You can view our public reference deployment of the app [here](https://happy-ramanujan-431003.netlify.app/).
+
 ## Running this app locally
 
 Running the application locally entails running both the backend service and a frontend.
