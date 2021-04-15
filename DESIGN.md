@@ -11,11 +11,17 @@ We added new react elements to TownSelection to handle updating the character fi
 The following files were changed in some capacity and are referenced in the updated UML diagram below:
 
 frontend/src/App.tsx
+
 frontend/src/classes/Player.ts
+
 frontend/src/classes/TownsServiceClient.ts
+
 frontend/src/classes/Video/Video.ts
+
 frontend/src/components/Login/TownSelection.tsx
+
 frontend/src/components/world/WorldMap.tsx
+
 services/roomService/src/client/TownsServiceClient.ts
 
-![Architecture](https://prnt.sc/11ewcuj)
+![Architecture](docs/architecture.png)
