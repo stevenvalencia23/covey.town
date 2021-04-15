@@ -12,6 +12,10 @@ The frontend implements video chat using the [Twilio Programmable Video](https:/
 
 A backend service (in the `services/roomService` directory) implements the application logic: tracking which "towns" are available to be joined, and the state of each of those towns.
 
+## Additional Feature: Character Customization
+
+This deployment of Covey.Town features character custoimization. It requires no additional steps for deployment. The appropriate repo can be found [here](https://github.com/stevenvalencia23/covey.town).
+
 ## Running this app locally
 
 Running the application locally entails running both the backend service and a frontend.
