@@ -10,6 +10,6 @@ Through the feature, a user is able to make themselves distinctly recognizable w
 
 To use the feature, you will need to select an appearance before joining a town. When logging in to Covey.Town on the main town selection screen, select one of the 4 appearance options listed under the “username” input box. Selecting this will lock your appearance in place for your given session of Covey.Town, and is only finalized once you join a game. You can also click the “Randomize” word underneath the 4 option boxes to have one of them be selected at random. If you don’t make any selection, you will have the default appearance of the original blond misa sprite.
 
-# How to tell its working
+# How to tell it's working
 
 When you load into the game after selecting an appearance, your individual sprite choice will retain the appearance you selected, and be visible to all other players who interact with you in the game.
